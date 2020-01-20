@@ -7,8 +7,8 @@ export const insertBook = async (event, _context) => {
     await connectToMongo()
 
     var book = new Book({
-        title: "foofsdf",
-        author: "barsdf"
+        title: "foo",
+        author: "bar"
     });
 
     await book.save((err: any) => {
