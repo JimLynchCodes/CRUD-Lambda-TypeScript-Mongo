@@ -12,6 +12,7 @@ custom:
 # Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
+  - serverless-offline
 
 provider:
   name: aws
@@ -22,9 +23,38 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
 functions:
-  hello:
-    handler: handler.hello
+  
+  getAllBooks:
+    handler: src/read.getAllBooks
     events:
       - http:
           method: get
-          path: hello
+          path: books
+  
+  getSingleBook:
+    handler: src/read.getSingleBook
+    events:
+      - http:
+          method: get
+          path: books/:id
+
+  deleteBook:
+    handler: src/delete.deleteBook
+    events:
+      - http:
+          method: delete
+          path: books/:id
+
+  updateBook:
+    handler: src/update.updateBook
+    events:
+      - http:
+          method: post
+          path: books/:id
+
+  insertBook:
+    handler: src/create.insertBook
+    events:
+      - http:
+          method: put
+          path: books
