@@ -2,8 +2,8 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import 'source-map-support/register';
 import Book, { connectToMongo } from './utils/mongo-connect';
 
-export const getAllBooks = async (event, _context, callback) => {
-    
+export const getAllBooks = async (event, context) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     console.log('before connect... ')
     await connectToMongo()
     console.log('after connect... ')
@@ -13,20 +13,27 @@ export const getAllBooks = async (event, _context, callback) => {
         console.log('got books', books)
 
         if (err)
-            callback({
+            // callback(
+            return {
                 statusCode: 400,
                 body: JSON.stringify({
                     error: err,
                 }, null, 2),
-            });
+            }
+        // );
         else
-            callback(null, {
+            return {
                 statusCode: 200,
                 body: JSON.stringify({
                     data: books,
                 }, null, 2)
-            });
+            };
 
     });
+
+    console.log('down here.')
+
+    // await connection.close()
+
 
 }

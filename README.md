@@ -5,6 +5,12 @@
 A little serverless lambda providing CRUD functionality for a MongoDB collection! 🎉 
 
 
+## Tldr;
+Run it with this command:
+```
+sls offline --skipCacheInvalidation --useSeparateProcesses start
+```
+
 
 # Motivation
 As a software engineer, I often find myself recreating a simple backend server that exposes CRUD (create, read, update, and delete) operations. In order to make my future developments faster I have created this project as somewhat of a reference guide.
@@ -108,7 +114,9 @@ Use seed script to enter a few sample books into the collection.
 
 
 #### Option A) With "Serverless Offline"
-
+```
+sls offline start
+```
 
 #### Calling Endpoints From Postman (Manually)
 

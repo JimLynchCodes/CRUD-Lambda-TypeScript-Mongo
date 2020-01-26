@@ -23,14 +23,20 @@ provider:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
 functions:
-  
+  healthCheck:
+    handler: src/healthCheck.healthCheck
+    events:
+      - http:
+          method: get
+          path: healthcheck
+
   getAllBooks:
     handler: src/read.getAllBooks
     events:
       - http:
           method: get
           path: books
-  
+
   getSingleBook:
     handler: src/read.getSingleBook
     events:

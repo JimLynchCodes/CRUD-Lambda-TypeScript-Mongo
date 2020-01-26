@@ -4,12 +4,13 @@ let connected = false
 
 export const connectToMongo = async() => {
 
+    console.log('connected - ', connected)
     if (!connected) {
 
         console.log('Connecting to mongo...')
         const uri: string = "mongodb://127.0.0.1:27017/local";
         
-        await mongoose.connect(uri, (err: any) => {
+        return await mongoose.connect(uri, (err: any) => {
             if (err) {
                 console.log(err.message);
                 return err;
