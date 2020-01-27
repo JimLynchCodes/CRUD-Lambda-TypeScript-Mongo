@@ -42,21 +42,21 @@ functions:
     events:
       - http:
           method: get
-          path: books/:id
+          path: books/{id}
 
   deleteBook:
     handler: src/delete.deleteBook
     events:
       - http:
           method: delete
-          path: books/:id
+          path: books/{id}
 
   updateBook:
     handler: src/update.updateBook
     events:
       - http:
           method: post
-          path: books/:id
+          path: books/{id}
 
   insertBook:
     handler: src/create.insertBook

@@ -1,8 +1,5 @@
-// import { APIGatewayProxyHandler } from 'aws-lambda';
-// import 'source-map-support/register';
-// import Book, { connectToMongo } from './utils/mongo-connect';
 
-export const healthCheck = async (event, _context, callback) => {
+export const healthCheck = async (event, _context) => {
 
     return {
         statusCode: 200,

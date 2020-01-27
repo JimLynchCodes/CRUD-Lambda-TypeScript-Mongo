@@ -1,47 +1,30 @@
-import { APIGatewayProxyHandler } from 'aws-lambda';
-import 'source-map-support/register';
 import Book, { connectToMongo } from './utils/mongo-connect';
 
 export const insertBook = async (event, _context) => {
 
     await connectToMongo()
 
-    var book = new Book({
-        title: "foola",
-        author: "bar"
-    });
+    var book = new Book(JSON.parse(event.body));
 
-    return new Promise(resolve => {
-
-
-        book.save((err: any) => {
-
-
-            resolve({
-                statusCode: 200,
-                body: JSON.stringify({
-                    data: 'CRUD-Lambda-TypeScript-Mongo Service Is Up & Running! 👍',
-                }, null, 2),
-            });
-
-
+    return new Promise((resolve, reject) => {
+        book.save((err: any, book) => {
             if (err)
-                return {
+                reject({
                     statusCode: 400,
                     body: JSON.stringify({
                         error: err,
                     }, null, 2),
-                };
+                })
             else {
-
-                console.log('saved!')
-                return {
+                console.log('Book has been saved!')
+                resolve({
                     statusCode: 200,
                     body: JSON.stringify({
-                        data: "stuff!",
+                        data: book,
                     }, null, 2)
-                };
+                })
             }
         })
     });
+
 }
