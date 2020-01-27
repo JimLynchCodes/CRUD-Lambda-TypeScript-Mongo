@@ -11,6 +11,18 @@ Run it with this command:
 sls offline --skipCacheInvalidation --useSeparateProcesses start
 ```
 
+## End-To-End Tests
+The end-to-end tests have been automated with Postman!
+
+To test manually -> Import the `CRUD-Lambdas-TypeScript.postman_collection.json` into Postman!
+
+To test from command line:
+```
+npx newman run CRUD-Lambdas-TypeScript.postman_collection.json
+```
+
+_Note: make sure your local mongoDb when running run End-to-end tests!_
+
 
 # Motivation
 As a software engineer, I often find myself recreating a simple backend server that exposes CRUD (create, read, update, and delete) operations. In order to make my future developments faster I have created this project as somewhat of a reference guide.
