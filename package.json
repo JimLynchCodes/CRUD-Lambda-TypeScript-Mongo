@@ -4,7 +4,10 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx serverless offline --skipCacheInvalidation --useSeparateProcesses start",
+    "test": "mocha -r ts-node/register src/**/*.test.ts --watch --watch-extensions ts",
+    "test:watch": "mocha --opts mocha.opts --watch",
+    "e2e": "npx newman run CRUD-Lambdas-TypeScript.postman_collection.json"
   },
   "dependencies": {
     "@types/mongoose": "^5.5.41",
@@ -13,10 +16,16 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.12.18",
+    "@types/sinon": "^7.5.1",
+    "chai": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "mocha": "^7.0.1",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.2.0",
+    "sinon": "^8.1.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.4",
     "webpack": "^4.29.0",

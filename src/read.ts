@@ -1,6 +1,6 @@
 import Book, { connectToMongo } from './utils/mongo-connect';
 
-export const getAllBooks = async (event, context) => {
+export const getAllBooks = async (_event, context) => {
     context.callbackWaitsForEmptyEventLoop = false;
 
     await connectToMongo()
@@ -9,6 +9,7 @@ export const getAllBooks = async (event, context) => {
 
         const books = await Book.find()
         console.log('books: ', books)
+        
         return {
             statusCode: 200,
             body: JSON.stringify({

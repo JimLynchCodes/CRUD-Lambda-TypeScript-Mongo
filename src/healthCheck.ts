@@ -1,5 +1,5 @@
 
-export const healthCheck = async (event, _context) => {
+export const healthCheck = async (_event, _context) => {
 
     return {
         statusCode: 200,
