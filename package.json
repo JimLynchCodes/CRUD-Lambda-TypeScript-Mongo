@@ -5,8 +5,9 @@
   "main": "handler.js",
   "scripts": {
     "start": "npx serverless offline --skipCacheInvalidation --useSeparateProcesses start",
-    "test": "mocha -r ts-node/register src/**/*.test.ts --watch --watch-extensions ts",
-    "test:watch": "mocha --opts mocha.opts --watch",
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
+    "test:watch": "./node_modules/nodemon/bin/nodemon.js -e ts,js --watch src --exec \"mocha -r ts-node/register src/**/*.test.ts\"",
+    "test:watch-plain-mocha-not-working": "mocha -r ts-node/register src/**/*.test.ts --watch --watch-extensions ts",
     "e2e": "npx newman run CRUD-Lambdas-TypeScript.postman_collection.json"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "chai": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
     "mocha": "^7.0.1",
+    "nodemon": "^2.0.2",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.2.0",
     "sinon": "^8.1.1",
