@@ -7,6 +7,8 @@ export const deleteBook = async (event, context) => {
 
     try {
         const result = await Book.deleteOne({ _id: event.pathParameters.id })
+
+        console.log('deleted!', result)
         return {
             statusCode: 200,
             body: JSON.stringify({
@@ -15,10 +17,12 @@ export const deleteBook = async (event, context) => {
         }
 
     } catch (err) {
+
+        console.log("err is " + err.toString())
         return {
-            statusCode: 200,
+            statusCode: 400,
             body: JSON.stringify({
-                data: err,
+                errors: [err.toString()],
             }, null, 2)
         }
     }

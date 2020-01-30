@@ -7,7 +7,9 @@ export const insertBook = async (event, _context) => {
     var book = new Book(JSON.parse(event.body));
 
     return new Promise((resolve, reject) => {
-        book.save((err: any, book) => {
+
+        book.save(
+            (err: any, book) => {
             if (err)
                 reject({
                     statusCode: 400,
@@ -24,7 +26,10 @@ export const insertBook = async (event, _context) => {
                     }, null, 2)
                 })
             }
-        })
+        }
+        
+        )
+    
     });
 
 }
