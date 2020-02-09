@@ -1,69 +1,48 @@
-import { expect } from "chai"
-import Book, { connectToMongo } from './utils/mongo-connect';
-// import { connectToMongo } from './utils/mongo-connect';
-import * as mongoConnectModule from './utils/mongo-connect'
+
+import Book, * as mongoConnectModule from './utils/mongo-connect'
 import { insertBook } from './create';
+
 import { ImportMock, MockManager } from 'ts-mock-imports';
-import { Model } from "mongoose";
 
-describe('ok', () => {
+describe('create Book sucessfull call', () => {
 
-    it('ok', async () => {
+    it('returns 200 containing the book just created.', async () => {
 
-        const fakeEvent = { body: "{\"foo\": \"giggles\"}" }
+        console.log("DERP")
+
+        const fakeEvent = {
+            body: JSON.stringify({
+                title: "foo",
+                author: "bar"
+            })
+        }
+
         const fakeContext = {}
 
-        // const httpMock = ImportMock.mockClass(mongoConnect, 'connectToMongo');
-
-
-        // class save
-
-        // const fakeBookMockManager = ImportMock.mockClass(mongoConnectModule.default)
-
-        const bookToSave = "book"
-
-        const fakeMongoConnect = ImportMock.mockFunction(mongoConnectModule, 'connectToMongo').resolves("foo");
-        const mockManager: any = ImportMock.mockClass(mongoConnectModule)
-        const sinonStub = mockManager.mock('save')
+        const fakeConnectResponse = async () => {
+            return {
+                body: {
+                    "Foo": "bar"
+                }
+            }
+        }
         
         
-        console.log(sinonStub(null, {"foo": "bar"}))
+        // var manager = ImportMock.mockClass(Book)
+
+        var mockFunction = ImportMock.mockFunction(mongoConnectModule, 'connectToMongo', fakeConnectResponse)
         
-        // .callsFake(() => {
-
-        //     // return Promise.resolve({
-        //     //     statusCode: 200,
-        //     //     body: JSON.stringify({
-        //     //         data: bookToSave,
-        //     //     }, null, 2)
-        //     // })
-
-
-        // });
-
-
-        // expect(sinonStub.calledTimes(1)).to.be.true
-
-        // expect(sinonStub)
-        // const mockManager: MockManager<Model<mongoConnectModule>> = ImportMock.mockClass(mongoConnectModule.default);
-        // const sinonStub = mockManager.mock('save');
-        // sinonStub.callsFake(() => {
-        // custom code here
-
-        console.log(';foobarrr');
-        // })
-        // fakeBookMockManager.mock("save", "foo")
-        // fakeBookSave.save = () => {
-
-
-        // const fakeBook = ImportMock.mockClass(mongoConnectModule.default)
-
+        // manager.mock('save').resolves('yay!')
+        
         const result = await insertBook(fakeEvent, fakeContext)
 
-        sinonStub.calledOnce()
+        console.log("derp", result)
+        console.log(result)
 
-        expect(result).to.eql(42)
+        // manager.restore()
+
     })
+
 })
 
-// })
+// TODO - failure case

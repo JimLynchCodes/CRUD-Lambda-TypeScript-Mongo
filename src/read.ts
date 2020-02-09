@@ -8,7 +8,6 @@ export const getAllBooks = async (_event, context) => {
     try {
 
         const books = await Book.find()
-        console.log('books: ', books)
         
         return {
             statusCode: 200,
@@ -21,7 +20,7 @@ export const getAllBooks = async (_event, context) => {
         return {
             statusCode: 400,
             body: JSON.stringify({
-                error: err,
+                errors: [{"message": err.name.toString()}],
             }, null, 2),
         }
     }

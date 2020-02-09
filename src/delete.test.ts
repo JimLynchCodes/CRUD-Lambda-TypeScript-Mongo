@@ -5,22 +5,26 @@ import { ImportMock } from 'ts-mock-imports';
 
 describe('deleteBook sucessfull call', () => {
 
-    it('returns 200 containing what Book.deleteBook returns', async () => {
+    it('returns 200 containing the data that Book.deleteBook resolves.', async () => {
 
         const fakeEvent = {
             pathParameters: {
                 id: 123
             }
         }
+ 
         const fakeContext = {}
 
-        var manager = ImportMock.mockStaticClass(mongoConnectModule);
+        var bookMockManager = ImportMock.mockStaticClass(mongoConnectModule)
+        var mockFunction = ImportMock.mockFunction(mongoConnectModule, 'connectToMongo', "url")
 
-        const fakeDeleteResponse = 46;
+        const fakeDeleteResponse = 46
 
-        manager.mock('deleteOne').resolves(fakeDeleteResponse)
+        const deleteOneMock = bookMockManager.mock('deleteOne').resolves(fakeDeleteResponse)
 
         const result = await deleteBook(fakeEvent, fakeContext)
+
+        expect(deleteOneMock.calledOnceWith({ _id: fakeEvent.pathParameters.id })).to.be.true
 
         expect(result.statusCode).to.eql(200)
 
@@ -28,12 +32,14 @@ describe('deleteBook sucessfull call', () => {
             data: fakeDeleteResponse
         }, null, 2))
 
+        bookMockManager.restore()
+        // mockFunction.restore()
     })
 })
 
 describe('deleteBook errors', () => {
 
-    it.only('returns 400 containing errors array containing Book.deleteBook error', async () => {
+    it('returns 400 with errors array containing Book.deleteBook error', async () => {
 
         const fakeEvent = {
             pathParameters: {
@@ -57,6 +63,8 @@ describe('deleteBook errors', () => {
         expect(result.body).to.equal(JSON.stringify({
             errors: [`Error: ${fakeDeleteError}`]
         }, null, 2))
+
+        manager.restore()
 
     })
 })

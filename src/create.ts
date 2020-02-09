@@ -10,13 +10,16 @@ export const insertBook = async (event, _context) => {
 
         book.save(
             (err: any, book) => {
-            if (err)
+            if (err) {
+
+                console.log('error ', err)
                 reject({
                     statusCode: 400,
                     body: JSON.stringify({
                         error: err,
                     }, null, 2),
                 })
+            }
             else {
                 console.log('Book has been saved!')
                 resolve({

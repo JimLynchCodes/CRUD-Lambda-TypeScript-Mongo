@@ -1,14 +1,12 @@
 import Book, { connectToMongo } from "./utils/mongo-connect";
 
 export const deleteBook = async (event, context) => {
-    context.callbackWaitsForEmptyEventLoop = false;
+    context.callbackWaitsForEmptyEventLoop = false
 
     await connectToMongo()
 
     try {
         const result = await Book.deleteOne({ _id: event.pathParameters.id })
-
-        console.log('deleted!', result)
         return {
             statusCode: 200,
             body: JSON.stringify({

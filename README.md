@@ -1,11 +1,9 @@
 # CRUD-Lambda-TypeScript-Mongo
 
-
-
 A little serverless lambda providing CRUD functionality for a MongoDB collection! 🎉 
 
-
 ## Tldr;
+
 Run it with this command:
 ```
 sls offline --skipCacheInvalidation --useSeparateProcesses start
@@ -58,7 +56,7 @@ TypeScript is an excellent superset of JavaScript that allows the written code t
 
 MongoDB is a NoSql database that provides excellent querying & aggregation apis and fantastically balances speed and scalability.
 
-# What We're Building
+# What It Is
 
 The goal of this project is to have a lambda function that exposes 5 endpoints relating to CRUD operations:
 
