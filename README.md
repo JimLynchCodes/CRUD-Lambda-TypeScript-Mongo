@@ -78,6 +78,23 @@ Our Mongo Database will contain a collection of Books where each books has the s
 }
 ```
 
+# Pagination
+In addition to the routes listed above, this project exposes an adiitional GET route with pagination. Though this will usually be the default behavior of the base slash route (`/books` in this case), I chose to make it a separate route in this case to illustrate how the implementation of the various routes differ.
+
+The pagination route can be called like so:
+```
+http://localhost:3000/paginated-books/size=20&after=someBookId
+```
+
+This pagination implementation is "cursor pagination" whichi is slightly superior to "offset-limit" pagination because with cursor pagination the results are more what a user would when changing pages after inserting or deleting records from the collection.
+
+### A Nice Explanation of Cursor Pagination
+- https://jsonapi.org/profiles/ethanresnick/cursor-pagination/ 
+
+### Example Implementations of "Cursor Pagination" With The MongoDb Mongoose Library
+- https://stackoverflow.com/a/21040304/1910355
+- https://stackoverflow.com/a/23640287/1910355
+
 
 # Usage
 
