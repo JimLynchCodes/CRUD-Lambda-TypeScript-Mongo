@@ -6,7 +6,7 @@ import { ImportMock, MockManager } from 'ts-mock-imports';
 
 describe('create Book sucessfull call', () => {
 
-    it('returns 200 containing the book just created.', async () => {
+    xit('returns 200 containing the book just created.', async () => {
 
         console.log("DERP")
 
@@ -38,6 +38,8 @@ describe('create Book sucessfull call', () => {
 
         console.log("derp", result)
         console.log(result)
+
+        mockFunction.restore()
 
         // manager.restore()
 

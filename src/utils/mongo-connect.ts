@@ -1,4 +1,5 @@
 import { connect, Document, Schema, model } from "mongoose";
+require('dotenv').config()
 
 let connected = false
 
@@ -9,7 +10,7 @@ export const connectToMongo = async() => {
     if (!connected) {
 
         console.log('Connecting to mongo...')
-        const uri: string = "mongodb://127.0.0.1:27017/local";
+        const uri: string = process.env.MONGO_URI;
         
         return await connect(uri, (err: any) => {
             if (err) {

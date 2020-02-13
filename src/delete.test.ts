@@ -15,8 +15,8 @@ describe('deleteBook sucessfull call', () => {
  
         const fakeContext = {}
 
-        var bookMockManager = ImportMock.mockStaticClass(mongoConnectModule)
-        var mockFunction = ImportMock.mockFunction(mongoConnectModule, 'connectToMongo', "url")
+        const bookMockManager = ImportMock.mockStaticClass(mongoConnectModule)
+        const mockFunction = ImportMock.mockFunction(mongoConnectModule, 'connectToMongo', "url")
 
         const fakeDeleteResponse = 46
 
@@ -33,7 +33,7 @@ describe('deleteBook sucessfull call', () => {
         }, null, 2))
 
         bookMockManager.restore()
-        // mockFunction.restore()
+        mockFunction.restore()
     })
 })
 
@@ -48,7 +48,7 @@ describe('deleteBook errors', () => {
         }
         const fakeContext = {}
 
-        var manager = ImportMock.mockStaticClass(mongoConnectModule);
+        const manager = ImportMock.mockStaticClass(mongoConnectModule);
 
         const fakeDeleteError = "Oh no, there was an error!";
 

@@ -9,10 +9,11 @@
     "test:watch": "./node_modules/nodemon/bin/nodemon.js -e ts,js --watch src --exec \"npm run test\"",
     "test:cov": "nyc npm run test",
     "test:watch-plain-mocha-not-working": "mocha -r ts-node/register src/*.test.ts --watch --watch-extensions ts",
-    "e2e": "npx newman run CRUD-Lambdas-TypeScript.postman_collection.json"
+    "e2e": "npx newman run CRUD-Lambda-TypeScript-Mongo.postman_collection.json"
   },
   "dependencies": {
     "@types/mongoose": "^5.5.41",
+    "dotenv": "^8.2.0",
     "mongoose": "^5.8.9",
     "source-map-support": "^0.5.10"
   },
