@@ -31,11 +31,11 @@
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.2.0",
     "sinon": "^8.1.1",
-    "ts-loader": "^5.3.3",
+    "ts-loader": "^9.4.2",
     "ts-mock-imports": "^1.2.6",
     "ts-sinon": "^1.0.25",
     "typescript": "^3.2.4",
-    "webpack": "^4.29.0",
+    "webpack": "^5.75.0",
     "webpack-node-externals": "^1.7.2"
   },
   "nyc": {
